@@ -1,0 +1,36 @@
+<form [formGroup]="form"
+      class="form-width mt-5 bg-dark p-5 rounded">
+  <h1 class="fs-1 text-center text-light">Inicio de sesión</h1>
+
+  <div class="my-3">
+    <label for="exampleInputEmail1"
+           class="form-label text-light">Email(*)</label>
+    <input class="form-control"
+           formControlName="email"
+           id="exampleInputEmail1">
+
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1"
+           class="form-label text-light">Contraseña(*)</label>
+    <input type="password"
+           formControlName="password"
+           class="form-control"
+           id="exampleInputPassword1">
+  </div>
+
+  <p class="text-center text-danger"
+     *ngIf="!isAttemptLoginSuccess">Credenciales incorrectas.</p>
+
+  <div class="my-3">
+    <a routerLink="/authentication/usuario"
+       routerLinkActive="active">Crear cuenta</a>
+  </div>
+
+  <div class="text-center">
+    <button type="submit"
+            class="btn btn-light mt-3"
+            [disabled]="form.invalid"
+            (click)="onClickLogin()">Ingresar</button>
+  </div>
+</form>

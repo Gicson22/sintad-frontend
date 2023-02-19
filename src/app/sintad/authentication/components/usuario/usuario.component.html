@@ -1,0 +1,63 @@
+<form [formGroup]="form"
+      class="form-width mt-5 bg-warning p-5 rounded">
+  <h1 class="fs-1 text-center text-light">Crear usuario</h1>
+
+
+
+  <div class="my-3">
+    <label for="inputNombre"
+           class="form-label text-light">Nombre(*)</label>
+    <input class="form-control"
+           formControlName="nombre"
+           autocomplete="off"
+           id="inputNombre">
+
+  </div>
+
+  <div class="my-3">
+    <label for="inputApellidos"
+           class="form-label text-light">Apellidos(*)</label>
+    <input class="form-control"
+           formControlName="apellidos"
+           autocomplete="off"
+           id="inputApellidos">
+  </div>
+
+  <div class="my-3">
+    <label for="exampleInputEmail1"
+           class="form-label text-light">Email(*)</label>
+    <input class="form-control"
+           formControlName="email"
+           autocomplete="off"
+           id="exampleInputEmail1">
+  </div>
+
+  <div class="mb-3">
+    <label for="inputPassword"
+           class="form-label text-light">Contraseña(*)</label>
+    <input type="password"
+           class="form-control"
+           formControlName="password"
+           autocomplete="off"
+           id="inputPassword">
+  </div>
+
+  <p class="text-center text-success"
+     *ngIf="createdSuccefully">Usuario creado con éxito...</p>
+
+  <div class="text-center">
+
+    <button type="submit"
+            class="btn btn-primary mt-3"
+            [disabled]="form.invalid"
+            (click)="onClickCreateUser()">Crear cuenta</button>
+  </div>
+
+  <div class="text-center">
+    <button (click)="onGoToLogin()"
+            type="button"
+            class="btn btn-link">Ir a login</button>
+
+  </div>
+
+</form>

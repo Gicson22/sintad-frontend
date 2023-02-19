@@ -1,0 +1,88 @@
+<form class="row g-3 p-5 bg-light position-sticky top-0"
+      [formGroup]="form">
+
+  <h1 class="fs-1 text-center mb-5">Manteniento de Tipo Documento</h1>
+
+  <div class="col-md-12">
+    <label for="inputDescripcion"
+           class="form-label">Descripción(*)</label>
+    <input type="text"
+           class="form-control"
+           formControlName="descripcion"
+           id="inputDescripcion">
+  </div>
+
+  <div class="col-md-6">
+    <label for="inputNombre"
+           class="form-label">Nombre(*)</label>
+    <input type="text"
+           class="form-control"
+           formControlName="nombre"
+           id="inputNombre">
+  </div>
+
+  <div class="col-md-4">
+    <label for="inputCodigo"
+           class="form-label">Código(*)</label>
+    <input type="text"
+           class="form-control"
+           formControlName="codigo"
+           id="inputCodigo">
+  </div>
+
+
+  <div class="form-check form-switch col-md-2 align-self-end">
+    <input class="form-check-input"
+           type="checkbox"
+           id="inputEstado"
+           formControlName="estado">
+    <label class="form-check-label"
+           for="inputEstado">Estado</label>
+  </div>
+
+  <div class="col-12 text-center">
+    <button type="submit"
+            class="btn btn-primary mt-3"
+            [disabled]="form.invalid"
+            (click)="saveData()">Guardar</button>
+  </div>
+</form>
+
+<!-- Table -->
+
+<table class="table mt-5">
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Descripción</th>
+      <th scope="col">Código</th>
+      <th scope="col">Estado</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr *ngFor="let tipo of tiposDocumento"
+        class="table-primary">
+      <td>{{tipo.nombre}}</td>
+      <td>{{tipo.descripcion}}</td>
+      <td>{{tipo.codigo}}</td>
+      <td>{{tipo.estado ? 'Habilitado' : 'Deshabilitado'}}</td>
+      <td class="text-center">
+
+        <button type="button"
+                class="btn btn-success me-2 d-inline-block"
+                (click)="clickUpdateTiposDocumento(tipo)">
+          Editar
+        </button>
+        <button type="button"
+                class="btn btn-danger"
+                (click)="clickDeleteTiposDocumento(tipo)">
+          Eliminar
+        </button>
+
+      </td>
+    </tr>
+
+  </tbody>
+</table>

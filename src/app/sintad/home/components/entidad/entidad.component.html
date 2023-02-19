@@ -1,0 +1,137 @@
+<form class="row g-3 p-5  bg-light position-sticky top-0"
+      [formGroup]="form">
+
+  <h1 class="fs-1 text-center mb-5">Manteniento de entidades</h1>
+
+  <div class="col-md-2">
+    <label for="inputNDoc"
+           class="form-label">Numero documento(*)</label>
+    <input type="text"
+           class="form-control"
+           formControlName="nro_documento"
+           id="inputNDoc">
+  </div>
+  <div class="col-md-5">
+    <label for="inputRsocial"
+           class="form-label">Razon Social(*)</label>
+    <input type="text"
+           class="form-control"
+           formControlName="razon_social"
+           id="inputRsocial">
+  </div>
+  <div class="col-md-5">
+    <label for="inputNComercial"
+           class="form-label">Nombre Comercial(*)</label>
+    <input type="text"
+           class="form-control"
+           formControlName="nombre_comercial"
+           id="inputNComercial">
+  </div>
+  <div class="col-10">
+    <label for="inputDireccion"
+           class="form-label">Dirección(*)</label>
+    <input type="text"
+           class="form-control"
+           id="inputDireccion"
+           formControlName="direccion"
+           placeholder="Calle Las Rosas...">
+  </div>
+  <div class="col-2">
+    <label for="inputCelular"
+           class="form-label">Celular(*)</label>
+    <input type="text"
+           class="form-control"
+           id="inputCelular"
+           formControlName="telefono"
+           placeholder="941024245">
+  </div>
+
+  <div class="col-md-5">
+    <label for="inputTipoContribuyente"
+           class="form-label">Tipo Contribuyente(*)</label>
+    <select id="inputTipoContribuyente"
+            formControlName="tipo_contribuyente"
+            class="form-select">
+      <option selected
+              value="">Selecciona...</option>
+      <option *ngFor="let contribuyente of tiposContribuyentes"
+              [value]="contribuyente.id">{{contribuyente.nombre}}</option>
+    </select>
+  </div>
+
+
+  <div class="col-md-5">
+    <label for="inputTipoDocumento"
+           class="form-label">Tipo Documento(*)</label>
+    <select id="inputTipoDocumento"
+            formControlName="tipo_documento"
+            class="form-select">
+      <option selected
+              value="">Selecciona...</option>
+      <option *ngFor="let doc of tiposDocumentos"
+              [value]="doc.id">{{doc.nombre}}</option>
+    </select>
+  </div>
+
+  <div class="form-check form-switch col-md-2 align-self-end  ">
+    <input class="form-check-input"
+           type="checkbox"
+           id="inputEstado"
+           formControlName="estado">
+    <label class="form-check-label"
+           for="inputEstado">Estado</label>
+  </div>
+
+  <div class="col-12 text-center">
+    <button type="submit"
+            class="btn btn-primary mt-3"
+            [disabled]="form.invalid"
+            (click)="saveData()">Guardar</button>
+  </div>
+</form>
+
+<!-- Table -->
+
+<table class="table mt-5">
+  <thead>
+    <tr>
+      <th scope="col">N° Documento</th>
+      <th scope="col">Razon Social</th>
+      <th scope="col">Dirección</th>
+      <th scope="col">Telefono</th>
+      <th scope="col">Tipo Contribuyente</th>
+      <th scope="col">Tipo Documento</th>
+      <th scope="col">Estado</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+
+
+    <tr *ngFor="let entidad of entidades"
+        class="table-primary">
+      <th scope="row">{{entidad.nro_documento}}</th>
+      <td>{{entidad.razon_social}}</td>
+      <td>{{entidad.direccion}}</td>
+      <td>{{entidad.telefono}}</td>
+      <td>{{entidad.tipo_contribuyente.nombre}}</td>
+      <td>{{entidad.tipo_documento.nombre}}</td>
+      <td>{{entidad.estado ? 'Habilitado' : 'Deshabilitado'}}</td>
+      <td class="text-center">
+
+        <button type="button"
+                class="btn btn-success me-2 d-inline-block"
+                (click)="clickUpdateEntidad(entidad)">
+          Editar
+        </button>
+        <button type="button"
+                class="btn btn-danger"
+                (click)="clickDeleteEntidad(entidad)">
+          Eliminar
+        </button>
+
+      </td>
+    </tr>
+
+  </tbody>
+</table>
